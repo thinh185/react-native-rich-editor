@@ -358,7 +358,7 @@ function createHTML(options = {}) {
                 },
 
                 commandDOM: function (command){
-                    try {new Function("$", command)(exports.document.querySelector.bind(exports.document))} catch(e){console.log(e.message)};
+                    try {new Function("$", command)(exports.document.querySelectorAll.bind(exports.document))} catch(e){console.log(e.message)};
                 },
                 command: function (command){
                     try {new Function("$", command)(exports.document)} catch(e){console.log(e.message)};
@@ -371,7 +371,7 @@ function createHTML(options = {}) {
             },
 
             UPDATE_HEIGHT: function() {
-                var height = Math.max(docEle.scrollHeight, body.scrollHeight);
+                var height = Math.min(docEle.scrollHeight, body.scrollHeight);
                 if (o_height !== height){
                     _postMessage({type: 'OFFSET_HEIGHT', data: o_height = height});
                 }
